@@ -1,0 +1,15 @@
+CREATE TABLE `water_level_temp` (
+    `id` varchar(255) NOT NULL,
+    `water_level` int(3) NOT NULL,
+    `Status_WLS` varchar(255) NOT NULL,
+    `time` time NOT NULL,
+    `date` date NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `water_level_temp`(`id`, `water_level`, `Status_WLS`, `time`, `date`) VALUES ('esp32_01','0','SUCCESS',NOW(),NOW());
+
+
+http://localhost/HP_AQUAPONIE_HUGO/Test/home_test.php
