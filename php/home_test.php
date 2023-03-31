@@ -170,9 +170,7 @@
         xmlhttp.open("POST","getdata_test.php",true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id="+id);
-			}
-      //------------------------------------------------------------
-      
+			}   
     </script>
   </body>
 </html>

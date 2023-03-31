@@ -164,8 +164,7 @@
     <br>
     
     <script>
-
-		// code to display and update the record table 
+	  // code to display and update the record table 
       var current_page = 1;
       var records_per_page = 10;
       var l = document.getElementById("table_id").rows.length
@@ -232,21 +231,16 @@
           btn_next.disabled = false;
         }
       }
-      //------------------------------------------------------------
-      
-      //------------------------------------------------------------
+
       function numPages() {
         return Math.ceil((l - 1) / records_per_page);
       }
-      //------------------------------------------------------------
-      
-      //------------------------------------------------------------
+
       window.onload = function() {
         var x = document.getElementById("number_of_rows").value;
         records_per_page = x;
         changePage(current_page);
       };
-      //------------------------------------------------------------
     </script>
   </body>
 </html>

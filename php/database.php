@@ -3,12 +3,11 @@
 	class Database {
 		// Private static properties to store database information
 		private static $dbName = 'aquaponie_hp_hugo'; // database name
-		private static $dbHost = 'localhost'; // database host
-		private static $dbUsername = 'root'; // database username
-		private static $dbUserPassword = ''; // database password
+		private static $dbHost = 'localhost'; 		  // database host
+		private static $dbUsername = 'root';          // database username
+		private static $dbUserPassword = '';          // database password
 		 
-		// Private static property to store database connection
-		private static $cont  = null;
+		private static $cont  = null; // Private static property to store database connection
 		 
 		// Constructor method to prevent instantiation of class
 		public function __construct() {
@@ -26,14 +25,12 @@
 					die($e->getMessage()); 
 				}
 			}
-			// Return database connection
-			return self::$cont;
+			return self::$cont; // Return database connection
 		}
 		 
 		// Public static method to disconnect from database
 		public static function disconnect() {
-			// Set the database connection property to null
-			self::$cont = null;
+			self::$cont = null; // Set the database connection property to null
 		}
 	}
 ?>

@@ -12,7 +12,7 @@ const char pass[] = SECRET_PASS;
 const String discord_webhook = SECRET_WEBHOOK;
 const String discord_tts = SECRET_TTS;
 
-//openssl s_client -showcerts -connect discordapp.com:443 (get last certificate)
+// Openssl s_client -showcerts -connect discordapp.com:443 (get last certificate)
 const char* discordappCertificate = \
                                     "-----BEGIN CERTIFICATE-----\n"
                                     "MIIDzTCCArWgAwIBAgIQCjeHZF5ftIwiTv0b7RQMPDANBgkqhkiG9w0BAQsFADBa\n"
@@ -45,7 +45,7 @@ void setup()
   Serial.begin(115200);
   
   connectWIFI();
-  sendDiscord("Hello World!");
+  sendDiscord("message to send on Discord once!");
 }
 
 void loop() 
@@ -58,8 +58,7 @@ void connectWIFI()
   WiFi.mode(WIFI_STA);
   Serial.print("[WiFi] Connecting to: ");
   Serial.println(ssid);
-  // wait for WiFi connection
-  while ((WiFiMulti.run() != WL_CONNECTED)) {
+  while ((WiFiMulti.run() != WL_CONNECTED)) {  // Wait for WiFi connection
     Serial.print(".");
   }
   Serial.println("[WiFi] Connected");
@@ -76,7 +75,7 @@ void sendDiscord(String content)
       Serial.println("[HTTP] Message: " + content);
       Serial.println("[HTTP] TTS: " + discord_tts);
       if (https.begin(*client, discord_webhook)) {  // HTTPS
-        // start connection and send HTTP header
+        // Start connection and send HTTP header
         https.addHeader("Content-Type", "application/json");
         int httpCode = https.POST("{\"content\":\"" + content + "\",\"tts\":" + discord_tts +"}");
 
@@ -86,7 +85,7 @@ void sendDiscord(String content)
           Serial.print("[HTTP] Status code: ");
           Serial.println(httpCode);
 
-          // file found at server
+          // File found at server
           if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
             String payload = https.getString();
             Serial.print("[HTTP] Response: ");
@@ -96,13 +95,10 @@ void sendDiscord(String content)
           Serial.print("[HTTP] Post... failed, error: ");
           Serial.println(https.errorToString(httpCode).c_str());
         }
-
         https.end();
       } else {
         Serial.printf("[HTTP] Unable to connect\n");
       }
-
-      // End extra scoping block
     }
 
     delete client;
